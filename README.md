@@ -1,62 +1,178 @@
 # pandas-challenge
-In this Challenge, you are tasked with creating a Python script to analyze the financial records of your company. You will be given a financial dataset called budget_data.csv. The dataset is composed of two columns: "Date" and "Profit/Losses".
+Using Pandas and Jupyter Notebook, create a report that includes the following data. Your report must include a written description of at least two observable trends based on the data.
 
-Your task is to create a Python script that analyzes the records to calculate each of the following values:
+Hint: Check out the sample solution called PyCitySchools_starter.ipynb located in the .zip file to review the desired format for this assignment.
 
-The total number of months included in the dataset
+District Summary
+Perform the necessary calculations and then create a high-level snapshot of the district's key metrics in a DataFrame.
 
-The net total amount of "Profit/Losses" over the entire period
+Include the following:
 
-The changes in "Profit/Losses" over the entire period, and then the average of those changes
+Total number of unique schools
 
-The greatest increase in profits (date and amount) over the entire period
+Total students
 
-The greatest decrease in profits (date and amount) over the entire period
+Total budget
 
-Your analysis should align with the following results:
-Financial Analysis
-----------------------------
-Total Months: 86
-Total: $22564198
-Average Change: $-8311.11
-Greatest Increase in Profits: Aug-16 ($1862002)
-Greatest Decrease in Profits: Feb-14 ($-1825558)
-In addition, your final script should both print the analysis to the terminal and export a text file with the results.
+Average math score
 
-PyPoll Instructions
-In this Challenge, you are tasked with helping a small, rural town modernize its vote-counting process.
+Average reading score
 
-You will be given a set of poll data called election_data.csv. The dataset is composed of three columns: "Voter ID", "County", and "Candidate". Your task is to create a Python script that analyzes the votes and calculates each of the following values:
+% passing math (the percentage of students who passed math)
 
-The total number of votes cast
+% passing reading (the percentage of students who passed reading)
 
-A complete list of candidates who received votes
+% overall passing (the percentage of students who passed math AND reading)
 
-The percentage of votes each candidate won
+School Summary
+Perform the necessary calculations and then create a DataFrame that summarizes key metrics about each school.
 
-The total number of votes each candidate won
+Include the following:
 
-The winner of the election based on popular vote
+School name
 
-Your analysis should align with the following results:
+School type
 
-Election Results
--------------------------
-Total Votes: 369711
--------------------------
-Charles Casper Stockham: 23.049% (85213)
-Diana DeGette: 73.812% (272892)
-Raymon Anthony Doane: 3.139% (11606)
--------------------------
-Winner: Diana DeGette
--------------------------
-In addition, your final script should both print the analysis to the terminal and export a text file with the results.
+Total students
 
-Hints and Considerations
-Consider what you've learned so far. You've learned how to import modules like csv. You’ve learned how to read and write files in various formats. You’ve learned how to store content in variables, lists, and dictionaries. You’ve learned how to iterate through basic data structures. And you’ve learned how to debug along the way. Using all that you've learned, try to break down your tasks into discrete mini-objectives.
+Total school budget
 
-The datasets for these Challenges are quite large. This was done purposefully to showcase one of the limits of Excel-based analysis. As data analysts, our first instinct is often to go straight to Excel, but creating scripts in Python can provide us with more powerful options for handling big data.
+Per student budget
 
-Write one script for each of the provided datasets. Run each script separately to make sure that the code works for its respective dataset.
+Average math score
 
-Always commit your work and back it up with pushes to GitHub or GitLab. You don't want to lose hours of your hard work! Also make sure that your repo has a detailed README.md file.
+Average reading score
+
+% passing math (the percentage of students who passed math)
+
+% passing reading (the percentage of students who passed reading)
+
+% overall passing (the percentage of students who passed math AND reading)
+
+Highest-Performing Schools (by % Overall Passing)
+Sort the schools by % Overall Passing in descending order and display the top 5 rows.
+
+Save the results in a DataFrame called "top_schools".
+
+Lowest-Performing Schools (by % Overall Passing)
+Sort the schools by % Overall Passing in ascending order and display the top 5 rows.
+
+Save the results in a DataFrame called "bottom_schools".
+
+Math Scores by Grade
+Perform the necessary calculations to create a DataFrame that lists the average math score for students of each grade level (9th, 10th, 11th, 12th) at each school.
+
+Reading Scores by Grade
+Create a DataFrame that lists the average reading score for students of each grade level (9th, 10th, 11th, 12th) at each school.
+
+Scores by School Spending
+Create a table that breaks down school performance based on average spending ranges (per student).
+
+Use the code provided below to create four bins with reasonable cutoff values to group school spending.
+
+spending_bins = [0, 585, 630, 645, 680]
+labels = ["<$585", "$585-630", "$630-645", "$645-680"]
+Use pd.cut to categorize spending based on the bins.
+
+Use the following code to then calculate mean scores per spending range.
+
+spending_math_scores = school_spending_df.groupby(["Spending Ranges (Per Student)"]).mean()["Average Math Score"]
+spending_reading_scores = school_spending_df.groupby(["Spending Ranges (Per Student)"]).mean()["Average Reading Score"]
+spending_passing_math = school_spending_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Passing Math"]
+spending_passing_reading = school_spending_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Passing Reading"]
+overall_passing_spending = school_spending_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Overall Passing"]
+Use the scores above to create a DataFrame called spending_summary.
+
+Include the following metrics in the table:
+
+Average math score
+
+Average reading score
+
+% passing math (the percentage of students who passed math)
+
+% passing reading (the percentage of students who passed reading)
+
+% overall passing (the percentage of students who passed math AND reading)
+
+Scores by School Size
+Use the following code to bin the per_school_summary.
+
+size_bins = [0, 1000, 2000, 5000]
+labels = ["Small (<1000)", "Medium (1000-2000)", "Large (2000-5000)"]
+Use pd.cut on the "Total Students" column of the per_school_summary DataFrame.
+
+Create a DataFrame called size_summary that breaks down school performance based on school size (small, medium, or large).
+
+Scores by School Type
+Use the per_school_summary DataFrame from the previous step to create a new DataFrame called type_summary.
+
+This new DataFrame should show school performance based on the "School Type".
+
+Requirements
+District Summary (20 points)
+Calculate the total number of unique schools (2 points)
+Calculate the total number of students (2 points)
+Calculate the total budget (2 points)
+Calculate the average (mean) math score (2 points)
+Calculate the average (mean) reading score (2 points)
+Use the code provided to calculate the percentage of students who passed math (2 points)
+Calculate the percentage of students who passed reading (2 points)
+Use the code provided to calculate the percentage of students that passed both math and reading (2 points)
+Create a new DataFrame for the above calculations called district_summary (4 points)
+School Summary (20 points)
+Use the code provided to select the school type (2 points)
+Calculate the total student count (2 points)
+Use the code provided to calculate the per capita spending (2 points)
+Calculate the average test scores (2 points)
+Calculate the number of schools with math scores of 70 or higher (2 points)
+Calculate the number of schools with reading scores of 70 or higher (2 points)
+Use the provided code to calculate the schools that passed both math and reading with scores of 70 or higher (2 points)
+Use the provided code to calculate the passing rates (2 points)
+Create a new DataFrame for the above calculations called per_school_summary (4 points)
+Highest-Performing Schools by Percentage of Overall Passing (5 points)
+Sort the schools by % Overall Passing in descending order (2 points)
+Save the results to a DataFrame called top_schools (2 points)
+Display the first 5 rows (1 point)
+Lowest-Performing Schools by Percentage of Overall Passing (5 points)
+Sort the schools by % Overall Passing in ascending order (2 points)
+Save the results to a DataFrame called bottom_schools (2 points)
+Display the first 5 rows (1 point)
+Math Scores by Grade (10 points)
+Use the code provided to separate the data by grade (1 points)
+Group by "school_name" and take the mean of each (4 points)
+Use the code to select only the math_score (1 points)
+Combine each of the scores above into single DataFrame called math_scores_by_grade (4 points)
+Reading Scores by Grade (10 points)
+Use the code provided to separate the data by grade (1 points)
+Group by "school_name" and take the mean of each (4 points)
+Use the code to select only the reading_score (1 points)
+Combine each of the scores above into single DataFrame called reading_scores_by_grade (4 points)
+Scores by School Spending (5 points)
+Use pd.cut with the provided code to bin the data by the spending ranges (2 points)
+Use the code provided to calculate the averages (1 points)
+Create the spending_summary DataFrame using the binned and averaged spending data (2 points)
+Scores by School Size (5 points)
+Use pd.cut with the provided code to bin the data by the school sizes (2 points)
+Use the code provided to calculate the averages (1 points)
+Create the size_summary DataFrame using the binned and averaged size data (2 points)
+Scores by School Type (5 points)
+Group the per_school_summary DataFrame by "School Type" and average the results (2 points)
+Use the code provided to select the new column data (1 point)
+Create a new DataFrame called type_summary that uses the new column data (2 points)
+Written Report (15 points)
+To receive all points, the written report presents a cohesive written analysis that:
+
+Summarizes the analysis (5 points)
+
+Draws two correct conclusions or comparisons from the calculations (10 points)
+
+Grading
+This assignment will be evaluated against the requirements and assigned a grade according to the following table:
+
+Grade	Points
+A (+/-)	90+
+B (+/-)	80–89
+C (+/-)	70–79
+D (+/-)	60–69
+F (+/-)	< 60
