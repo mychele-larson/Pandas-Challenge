@@ -160,6 +160,7 @@ Scores by School Type (5 points)
 Group the per_school_summary DataFrame by "School Type" and average the results (2 points)
 Use the code provided to select the new column data (1 point)
 Create a new DataFrame called type_summary that uses the new column data (2 points)
+
 Written Report (15 points)
 To receive all points, the written report presents a cohesive written analysis that:
 
